@@ -1,1 +1,5 @@
-{{ ember-chart type='bar' data=this.chartData height=500 width=600 }}
+<button type="button" style="width:200px" {{on "click" this.toggleChart}}>
+  {{this.buttonTitle}}
+</button>
+<br>
+{{ ember-chart type='bar' data=this.chartData height=100 }}
