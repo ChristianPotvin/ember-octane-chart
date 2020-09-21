@@ -1,0 +1,13 @@
+{{outlet}}
+
+<Chart @entries={{@model}} @label='Post Title Length' />
+
+{{!#each model as |test|}}
+{{!    <p>{{test.title.length</p>}}
+{{!/each}}
+
+{{!-- <Filter @entries={{@model}} as |results|>
+    {{#each results as |result|}}
+        <p>{{result}}</p>
+    {{/each}}
+</Filter> --}}
