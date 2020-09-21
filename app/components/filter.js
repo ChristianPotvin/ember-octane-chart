@@ -4,24 +4,54 @@ export default class FilterComponent extends Component {
     get results() {
         let { entries } = this.args;
 
+        const MAX_INTERVAL_ENTRIES = 10;
+
         let results = new Array(entries.length);
 
-        let labels = new Array(10);
-        let data = new Array(10);
+        let labels = new Array();
+        let data = new Array();
 
-        for (let i = 0; i < 10; i++)
+        let highest = Number.MIN_SAFE_INTEGER;
+        let lowest = Number.MAX_SAFE_INTEGER;
+
+        for (let i = 0; i < results.length; i++)
         {
-            labels[i] = '[' + (i * 10 + 1) + '-' + (i * 10 + 10) + ']';
-            data[i] = 0;
+            results[i] = entries[i].title.length;
+
+            if (results[i] > highest)
+            {
+                highest = results[i];
+            }
+
+            if (results[i] < lowest)
+            {
+                lowest = results[i];
+            }
+        }
+
+        let interval = Math.ceil((highest - lowest) / MAX_INTERVAL_ENTRIES);
+        // console.log(lowest + '-' + highest + '---' + interval);
+
+        let lowBound, highBound = Number.MIN_SAFE_INTEGER;
+
+        // console.log(data.length);
+
+        for (let i = 0; i < MAX_INTERVAL_ENTRIES && highBound < highest ; i++)
+        {
+            lowBound = (i * interval + lowest);
+            highBound = lowBound + interval - 1;
+
+            labels.push('[' + lowBound + '-' + highBound + ']');
+            data.push(0);
         }
 
         for (let i = 0; i < results.length; i++)
         {
-            results[i] = Math.floor(entries[i].title.length / 10);
+            results[i] = Math.floor((results[i] - lowest) / interval);
 
             data[results[i]] += 1;
         }
 
-        return entries;
-      }
+        return data;
+    }
 }

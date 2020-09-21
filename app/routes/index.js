@@ -23,9 +23,6 @@ export default class IndexRoute extends Route
         let response = await fetch(url);
         let data = await response.json();
 
-        console.log('Running IndexRoute model');
-        console.log(data[0].title.length);
-
         return data;
 
         // console.log('Running IndexRoute model');
