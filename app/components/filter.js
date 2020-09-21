@@ -30,11 +30,8 @@ export default class FilterComponent extends Component {
         }
 
         let interval = Math.ceil((highest - lowest) / MAX_INTERVAL_ENTRIES);
-        // console.log(lowest + '-' + highest + '---' + interval);
 
         let lowBound, highBound = Number.MIN_SAFE_INTEGER;
-
-        // console.log(data.length);
 
         for (let i = 0; i < MAX_INTERVAL_ENTRIES && highBound < highest ; i++)
         {
